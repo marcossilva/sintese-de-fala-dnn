@@ -1,0 +1,49 @@
+\chapter{Metodologia}
+\label{cap:metodologia}
+
+O intuito na seleção de áudios bons tem os mesmos princípios do problema de ASR (\textit{Audio Speech Recognition}). Reduzir a relação sinal-ruído o máximo possível, tomar amostras com a menor variabilidade de entre falantes possível (e.g. Sotaques, idades, gênero, comprimento do trato vocal), tomar amostras com a melhor qualidade de áudio possível reduzindo qualquer efeito proveniente do ambiente (e.g. Reverberação), tomar amostras sem interseção entre falantes (e.g. \textit{Cocktail Party Problem}).
+
+Começamos esse capítulo apresentando conjuntos de dados públicos e discutindo métodos possíveis para a construção de um conjunto de dados próprio com dados de outros falantes. Após a discussão dos conjuntos de dados disponíveis e da seleção de um método para construção de um conjunto próprio analisamos os dados obtidos prevendo possíveis comportamentos provenientes do modelo final. Retomamos o modelo introduzido anteriormente e apontamos as mudanças necessárias para sua execução na língua portuguesa. Detalhamos então o processo de treino que pôde ser mais facilmente explorado e a partir dos melhores modelos selecionamos alguns resultados preliminares para discussão.
+
+
+\section{Construção do Dataset}
+Para trabalhar o treinamento da mesma rede na língua portuguesa buscamos encontrar primeiro conjuntos de dados já previamente construídos e disponíveis em domínio público. Alguns dos conjuntos de dados encontrados, no entanto não englobavam as necessidades mínimas de treino do modelo. O conjunto de dados\footnote{\url{https://www.kaggle.com/jonascarvalho/brazilian-portuguese-phonemes-audio/version/2}} exibe apenas segmentos fonéticos gravados por um falante. Nesse conjunto de dados o problema reside na impossibilidade de se extrair a transição entre diferentes fonemas e no desbalanceamento de fonemas comparativamente a uma situação real. 
+
+O conjunto de dados \footnote{\url{http://www.voxforge.org/pt/downloads}} possui frases de vários falantes e com várias frases distintas. Os inputs foram gravados manualmente pelos usuários em diversas fontes diferentes estando suscetíveis à ruídos externos e inconsistências de taxas de amostragem já que cada usuário usou seus próprios meios de gravação. Cada falante decide um conjunto de frases que gravaria de modo que temos vários falantes com poucas frases.
+
+Por fim o conjunto de dados disponível em \footnote{\url{http://labvis.ufpa.br/falabrasil/downloads/}}
+
+% O conjunto de dados disponível em
+% https://catalog.ldc.upenn.edu/LDC2006S16
+% usado em https://github.com/igormq/sbrt2017 / http://www.sbrt.org.br/sbrt2017/anais/1570360756.pdf
+
+% e
+
+% https://www.researchgate.net/publication/220327587_Free_tools_and_resources_for_Brazilian_Portuguese_speech_recognition
+
+Os conjuntos de dados citados anteriormente possuem a facilidade de estar disponíveis para download mas dadas as restrições de falantes, extensão de frases naturais faladas e diversos ambientes estabelecemos possíveis técnicas genéricas para facilitar uma possível construção posterior por outros usuários com outros falantes. 
+
+Dado um arquivo de áudio contendo fala e sua transcrição correspondente computar um alinhamento forçado consiste em, para cada fragmento da transcrição, determinar o intervalo respectivo no trecho de áudio contendo o respectivo fragmento. Os fragmentos podem ter diversas granularidades como as já discutidas anteriormente (fonema, palavra, sentença, parágrafo). O caso base, onde a granularidade é a maior possível alinha somente o texto inteiro ao áudio inteiro, não frequentemente útil. Dentre os exemplo práticos podemos destacar a construção de arquivos de legenda para sincronização, .
+
+Um alinhamento forçado é um dado alinhamento de um áudio de entrada e um texto de entrada. 
+
+Comumente utilizado para alinhamento de legendas quando o texto já está disponível mas o alinhamento ainda não foi feito manualmente. Existem diversas ferramentas reunidas que já executam essa atividade \footnote{\url{https://github.com/pettarin/forced-alignment-tools}} cuja maioria se destaca pela presença de HMMs como técnica mais utilizada. Num momento inicial experimentamos a construção de um conjunto de dados teste com a ferramenta aeneas \footnote{\url{https://www.readbeyond.it/aeneas/}} mas os resultados tanto em performance quanto em qualidade empírica não foram satisfatórios. 
+
+O alinhamento teste demorou até três vezes o tempo de comprimento do próprio áudio para gerar uma saída. A saída muitas vezes sofria com um pequeno desalinhamento no início do texto que descarrilhava uma falha sequencial em cascata.
+
+
+
+Nas próximas seções discutimos as estratégias estudadas para alinhamento de áudios. 
+
+\subsection{Álinhamento de Legendas do YouTube}
+\label{sec:youtube}
+Uma outra alternativa que surgiu foi utilizar os áudios e legendas do YouTube que já tenham sido avaliadas manualmente. O Youtube atualmente possui dois esquemas de legenda: em um a legenda é gerada automaticamente a partir do áudio do vídeo e fica disponível através da opção Legendas geradas automaticamente; essa legenda também é disponibilizada à quem fez upload do vídeo para avaliação e possível correção manual, tornando-se posteriormente disponível como uma legenda da linguagem definida.
+
+Selecionamos um conjunto de vídeos com expectativa de reduzir o ruído de fundo e possíveis alterações no áudio que pudessem atrapalhar a generalização do modelo. Nessa expectativa o conjunto de vídeos selecionados para teste foi do estilo vlog onde o falante discorre num monólogo com a câmera. Fizemos o download dos dados com um script python com auxílio da biblioteca youtube-dl que possibilita o download apenas do áudio dos vídeos assim como a legenda dos mesmos. Os áudios e legendas baixados apresentaram qualidade satisfatória e foram posteriormente seccionados em arquivos menores para facilitar a compreensão do conteúdo pelos trechos sequencias do modelo que, como citado anteriormente, sofre com a captura de informações em sequências ``muito longas'' 
+
+% \section{Análise Estatística das Línguas}
+% Duas análises: Análise Comparativa entre dicionários. Análise comparativa entre os conjuntos de teste utilizados. Contagem de fonemas mais frequentes para verificação posterior quanto à melhor performance desses na síntese do modelo.
+% \section{Construção do Modelo de RNN para Treino de Embeddings}
+% \section{Crítica quanto ao MOS e significância estatística dos estados da arte}
+% \section{Código}
+% Comentar do projeto forkado. Comentar da implementação do bloco inicial. Comentar da disponibilização do código, da construção dos dados mas não dos modelos treinados por motivo de privacidade.
