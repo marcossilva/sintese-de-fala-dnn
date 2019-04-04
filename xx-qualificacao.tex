@@ -2,7 +2,39 @@
 \usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
 \begin{document}
+
+\section{Contextualização}
+%Seção onde é feita a introdução da observação feita
+A fala é o meio mais comum de comunicação entre seres humanos\cite{flanang}. 
+A expressão falada é um dos meios que trocamos cotidianamente ideias, emoções e refletimos nossas personalidades\cite{Tiwari2012}. 
+Computadores têm se tornado cada vez melhores na complexa tarefa que é interagir conosco usando a fala \cite{HCI-voice} tanta na tarefa de compreensão (\emph{Speech to Text} (STT)) quanto na síntese (\emph{Text to Speech} (TTS)). 
+
+A síntese de fala já é um problema com vários produtos disponíveis para uso pelo público \footnote{\url{https://cloud.google.com/text-to-speech/}}\footnote{\url{https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/}} presente no cotidiano de muitos através das mais diversas aplicações.
+Entretanto esses modelos costumam permitir apenas síntese de falantes pré-determinados e frequentemente são modelos pagos e proprietários. 
+Recentemente diversas pesquisas demonstraram excelentes resultados na criação de modelos de voz a partir de gravações de um ou mais falantes na língua inglesa\cite{deepvoice3:DBLP:journals/corr/abs-1710-07654,baidu_voice_clonning:DBLP:journals/corr/abs-1802-06006,facebook:DBLP:journals/corr/TaigmanWPN17,speech_adaptation,wavenet,deepVoice,deepVoice2,deepvoice3:DBLP:journals/corr/abs-1710-07654}.
+
+%Seção onde as questões são introduzidas
+Será que podemos obter a síntese de fala com esses modelos na língua portuguesa para um falante qualquer com resultados similares?
+Essa mesma síntese pode ser obtida com resultados satisfatórios com restrições de tempo e de dados em seu treinamento?
+Como podemos medir de maneira quantitativa os resultados de modelos de síntese de modo a facilitar a avaliação qualitativa?
+
+
+\section{Questões}
+%Seção onde destrinchamos as questões em hipóteses
+
+% Questões: a primeira questão parece insuficientemente especificada; qualquer pessoa com um celular ou GPS já ouviu síntese de voz em português, então a pergunta talvez exija outras condições, como o uso de redes neurais ou o fato do usuário não dispor da massa de dados de treino de uma Google por exemplo. Acrescentar na frase "para obter uma convergência mais rápida dos modelos +em português+ com naturalidade similar".
+
+Queremos levantar como os atuais algoritmos de síntese neural se comportam perceptualmente na língua portuguesa com restrições de dados e de tempo na geração do modelo. Queremos levantar comparativamente se um modelo treinado com dados anteriores e que tenha apresentado bons resultados perceptuais pode ser benéfico para obter a síntese na língua portuguesa de maneira mais rápida, ou seja, com menor esforço computacional aproveitando o conhecimento já obtido do outro idioma.
+
+
+
+Podemos nos utilizar de \textit{transfer learning} com um modelo pré-treinado no inglês para obter uma convergência mais rápida dos modelos em português com naturalidade similar percebida pelos ouvintes comparativamente a um modelo treinado exclusivamente com o português?
+
+Conseguimos utilizar uma fração dos dados no treinamento com o modelo pré-treinado para obter um menor tempo de treinamento e uma síntese com naturalidade consistente com o mesmo modelo treinado com todos os dados em um período maior de tempo?
+
 \section{Datasets}
 
 Escolhemos para esse trabalho 3 conjuntos de dados sendo 2 prontamente acessíveis pelo grupo FalaBrasil e o outro extraído diretamente de vídeos do YouTube. Todos os arquivos tem 22.050Hz com 16 bits.
@@ -29,16 +61,6 @@ Escolhemos para esse trabalho 3 conjuntos de dados sendo 2 prontamente acessíve
 %     \item YouTube (Cellbit) - Os arquivos de áudio foram baixados diretamente do Youtube do canal Cellbit e corresponde a um total de 23 vídeos com legenda publicados entre 04/07/2017 e 27/03/2018 totalizando aproximadamente 23h de áudio. O locutor é um youtuber do sexo masculino com 21 anos. Os arquivos de áudio possuem taxa de amostragem de 22.050Hz com 16 bit e foram seccionados baseado nos tempos de cada linha inteira de frase do arquivo de legenda totalizando em 4203 arquivos de 2.9$\pm$4.2s.
 % \end{itemize}
 
-\section{Questões}
-% Questões: a primeira questão parece insuficientemente especificada; qualquer pessoa com um celular ou GPS já ouviu síntese de voz em português, então a pergunta talvez exija outras condições, como o uso de redes neurais ou o fato do usuário não dispor da massa de dados de treino de uma Google por exemplo. Acrescentar na frase "para obter uma convergência mais rápida dos modelos +em português+ com naturalidade similar".
-
-Queremos levantar como os atuais algoritmos de síntese neural se comportam perceptualmente na língua portuguesa com restrições de dados e de tempo na geração do modelo. Queremos levantar comparativamente se um modelo treinado com dados anteriores e que tenha apresentado bons resultados perceptuais pode ser benéfico para obter a síntese na língua portuguesa de maneira mais rápida, ou seja, com menor esforço computacional aproveitando o conhecimento já obtido do outro idioma.
-
-A síntese de fala já é um problema com vários produtos disponíveis para uso pelo público \cite{microsoft_tts, google_tts} presente no cotidiano de muitos através das mais diversas aplicações mas esses modelos costumam permitir a síntese de apenas um falante e, muitas vezes, são modelos pagos e proprietários. Podemos obter a síntese de fala com os atuais algoritmos do estado da arte no português para um falante qualquer? Essa mesma síntese pode ser obtida com resultados satisfatórios com restrições de tempo e de dados em seu treinamento?
-
-Podemos nos utilizar de \textit{transfer learning} com um modelo pré-treinado no inglês para obter uma convergência mais rápida dos modelos em português com naturalidade similar percebida pelos ouvintes comparativamente a um modelo treinado exclusivamente com o português?
-
-Conseguimos utilizar uma fração dos dados no treinamento com o modelo pré-treinado para obter um menor tempo de treinamento e uma síntese com naturalidade consistente com o mesmo modelo treinado com todos os dados em um período maior de tempo?
 
 \section{Métodos}
 Para responder aos questionamentos acima propomos os seguintes passos:
