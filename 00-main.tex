@@ -1,0 +1,308 @@
+\documentclass[11pt,twoside,a4paper]{book}
+
+
+\usepackage[brazil]{babel}
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{makeidx}
+\usepackage[nottoc]{tocbibind}
+\usepackage{courier}
+\usepackage{type1cm}
+\usepackage{listings}
+\usepackage{titletoc}
+%\usepackage[bf,small,compact]{titlesec} % cabe�alhos dos t�tulos: menores e compactos
+\usepackage[fixlanguage]{babelbib}
+\usepackage[font=small,format=plain,labelfont=bf,up,textfont=it,up]{caption}
+\usepackage[usenames,svgnames,dvipsnames]{xcolor}
+\usepackage[a4paper,top=2.54cm,bottom=2.0cm,left=2.0cm,right=2.54cm]{geometry} % margens
+%\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=black,linkcolor=black,urlcolor=black,filecolor=black,bookmarksopen=true]{hyperref} % links em preto
+\usepackage[pdftex,plainpages=false,pdfpagelabels,pagebackref,colorlinks=true,citecolor=DarkGreen,linkcolor=NavyBlue,urlcolor=DarkRed,filecolor=green,bookmarksopen=true]{hyperref} % links coloridos
+\usepackage[all]{hypcap}
+\usepackage[round,sort,nonamebreak]{natbib}
+\fontsize{60}{62}\usefont{OT1}{cmr}{m}{n}{\selectfont}
+
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{epigraph}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}
+\renewcommand{\headrulewidth}{0pt}
+
+\graphicspath{{./figuras/}}             % caminho das figuras (recomend�vel)
+\frenchspacing                          % arruma o espa�o: id est (i.e.) e exempli gratia (e.g.) 
+\urlstyle{same}                         % URL com o mesmo estilo do texto e n�o mono-spaced
+\makeindex                              % para o �ndice remissivo
+\raggedbottom                           % para n�o permitir espa�os extra no texto
+\fontsize{60}{62}\usefont{OT1}{cmr}{m}{n}{\selectfont}
+\cleardoublepage
+\normalsize
+
+% ---------------------------------------------------------------------------- %
+% Op��es de listing usados para o c�digo fonte
+% Ref: http://en.wikibooks.org/wiki/LaTeX/Packages/Listings
+\lstset{ %
+language=Python,                  % choose the language of the code
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it's 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,	                % adds a frame around the code
+framerule=0.6pt,
+tabsize=2,	                    % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)},         % if you want to add a comment within your code
+backgroundcolor=\color[rgb]{1.0,1.0,1.0}, % choose the background color.
+rulecolor=\color[rgb]{0.8,0.8,0.8},
+extendedchars=true,
+xleftmargin=10pt,
+xrightmargin=10pt,
+framexleftmargin=10pt,
+framexrightmargin=10pt
+}
+
+% ---------------------------------------------------------------------------- %
+% Corpo do texto
+\begin{document}
+\frontmatter 
+% cabe�alho para as p�ginas das se��es anteriores ao cap�tulo 1 (frontmatter)
+\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+\setcounter{tocdepth}{2}
+\fancyhead[LE]{\thepage\hspace{2em}\footnotesize{\leftmark}}
+\fancyhead[RE,LO]{}
+\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+
+\onehalfspacing  % espa�amento
+
+% ---------------------------------------------------------------------------- %
+% CAPA
+% Nota: O t�tulo para as disserta��es/teses do IME-USP devem caber em um 
+% orif�cio de 10,7cm de largura x 6,0cm de altura que h� na capa fornecida pela SPG.
+\thispagestyle{empty}
+\begin{center}
+    \vspace*{2.3cm}
+    \textbf{\Large{Síntese de Fala com Redes Neurais}}\\
+    
+    \vspace*{1.2cm}
+    \Large{Marcos Pedro Ferreira Leal Silva}
+    
+    \vskip 2cm
+    \textsc{
+    Dissertação apresentada\\[-0.25cm] 
+    ao\\[-0.25cm]
+    Instituto de Matemática e Estatística\\[-0.25cm]
+    da\\[-0.25cm]
+    Universidade de São Paulo\\[-0.25cm]
+    para\\[-0.25cm]
+    obtenção do título\\[-0.25cm]
+    de\\[-0.25cm]
+    Mestre em Ciências}
+    
+    \vskip 1.5cm
+    Programa: Instituto de Computação\\
+    Orientador: Dr. Marcelo Queiroz\\
+
+   	\vskip 1cm
+    %\normalsize{Durante o desenvolvimento deste trabalho o autor recebeu aux�lio
+    %financeiro da CAPES/CNPq/FAPESP}
+    
+    \vskip 0.5cm
+    \normalsize{São Paulo, fevereiro de 2019}
+\end{center}
+
+% ---------------------------------------------------------------------------- %
+% P�gina de rosto (S� PARA A VERS�O DEPOSITADA - ANTES DA DEFESA)
+% Resolu��o CoPGr 5890 (20/12/2010)
+%
+% IMPORTANTE:
+%   Coloque um '%' em todas as linhas
+%   desta p�gina antes de compilar a vers�o
+%   final, corrigida, do trabalho
+%
+%
+\newpage
+\thispagestyle{empty}
+    \begin{center}
+        \vspace*{2.3 cm}
+        \textbf{\Large{Síntese de Fala com Redes Neurais}}\\
+        \vspace*{2 cm}
+    \end{center}
+
+    \vskip 2cm
+
+    \begin{flushright}
+	Esta é a versão original da dissertação elaborada pelo\\
+	candidato (Marcos Pedro Ferreira Leal Silva), tal como \\
+	submetida à Comissão Julgadora.
+    \end{flushright}
+
+\pagebreak
+
+
+% ---------------------------------------------------------------------------- %
+% P�gina de rosto (S� PARA A VERS�O CORRIGIDA - AP�S DEFESA)
+% Resolu��o CoPGr 5890 (20/12/2010)
+%
+% Nota: O t�tulo para as disserta��es/teses do IME-USP devem caber em um 
+% orif�cio de 10,7cm de largura x 6,0cm de altura que h� na capa fornecida pela SPG.
+%
+% IMPORTANTE:
+%   Coloque um '%' em todas as linhas desta
+%   p�gina antes de compilar a vers�o do trabalho que ser� entregue
+%   � Comiss�o Julgadora antes da defesa
+%
+%
+% \newpage
+% \thispagestyle{empty}
+%     \begin{center}
+%         \vspace*{2.3 cm}
+%         \textbf{\Large{Síntese de Fala com Redes Neurais}}\\
+%         \vspace*{2 cm}
+%     \end{center}
+
+%     \vskip 2cm
+
+%     \begin{flushright}
+% 	Esta versão da dissertação contém as correções e alterações sugeridas\\
+% 	pela Comissão Julgadora durante a defesa da versão original do trabalho,\\
+% 	realizada em . Uma cópia da versão original está disponível no\\
+% 	Instituto de Matemática e Estatística da Universidade de São Paulo.
+
+%     \vskip 2cm
+
+%     \end{flushright}
+%     \vskip 4.2cm
+
+%     \begin{quote}
+%     \noindent Comissão Julgadora:
+    
+%     \begin{itemize}
+% 		\item Prof. Dr. 
+% 		\item Prof. Dra. 
+% 		\item Prof. Dr. 
+%     \end{itemize}
+      
+%     \end{quote}
+% \pagebreak
+
+
+\pagenumbering{roman}
+
+% ---------------------------------------------------------------------------- %
+% Agradecimentos:
+% Se o candidato n�o quer fazer agradecimentos, deve simplesmente eliminar esta p�gina 
+% \chapter*{Agradecimentos}
+% Gostaria de agradecer muito a todos que me deram suporte no desenvolvimento desse trabalho especialmente a meu orientador que me permitiu uma flexibilidade ímpar; Troy Kohwalter que me ajudou a revisar extensivamente esse trabalho.
+
+
+% ---------------------------------------------------------------------------- %
+% Resumo
+\chapter*{Resumo}
+
+\noindent Leal, M., \textbf{Síntese de Fala com Redes Neurais}. 2018. 28 f.
+Tese (Mestrado) - Instituto de Matemática e Estatística,
+Universidade de São Paulo, São Paulo, 2019.
+
+\hfill
+
+O presente trabalho apresenta a aplicação de redes neurais artificiais profundas interconectadas de modo a sermos capaz de modelar fala e reproduzi-la com trechos que nunca foram falados pelo falantes original. Para esse fim exploramos na revisão bibliográfica os algoritmos que atingiram o estado da arte da síntese de fala e oferecemos uma análise comparativa entre as estratégias adotadas. Criticamos a majoritariedade de modelos desenvolvidos apenas com a linguagem inglesa e apontamos algumas diferenças linguísticas entre o português e o inglês. Apresentamos então a implementação de um desses modelos para validar sua performance na língua portuguesa. Comparamos os resultados obtidos com os já publicados para levantar um comparativo quanto à performance do modelo em tempo de execução/treino e também quanto à percepção humana sobre a voz sintetizada através do \textit{MOS (Mean Opinion Score)}.
+
+\hfill
+
+\noindent \textbf{Palavras-chave:} redes neurais; síntese; fala; síntese de fala neural;
+
+% ---------------------------------------------------------------------------- %
+% Abstract
+\chapter*{Abstract}
+\noindent LEAL, M. \textbf{Voice Synthesis with Deep Neural Networks}. 
+2019. 28 f.
+Tese (Mestrado) - Instituto de Matemática e Estatística,
+Universidade de São Paulo, São Paulo, 2010.
+\hfill
+
+The paper presents the application of deep neural networks in order to model speech and reproduce it with excerpts that were never spoken by the original speakers. For this we explored in the bibliographic review the algorithms that reached the state of the art of speech synthesis and offered a comparative analysis between the adopted strategies. We criticize the majority of models developed only with the English language and point out some linguistic differences between Portuguese and English. We then present the implementation of one of these models to validate their performance in the Portuguese language. We compared the results obtained with those already published in order to compare the performance of the model at runtime / training and also the human perception about the voice synthesized through MOS (Mean Opinion Score).
+
+\hfill
+
+\noindent \textbf{Keywords:} neural networks; synthesis; speech; neural speech synthesis;
+
+% ---------------------------------------------------------------------------- %
+% Sum�rio
+\tableofcontents    % imprime o sum�rio
+
+% ---------------------------------------------------------------------------- %
+\chapter{Lista de Abreviaturas}
+\begin{tabular}{ll}
+         CNN         & Redes Neurais Convolucionais (\emph{Convolutional Neural Netowkrs})\\
+         RNN         & Redes Neurais Recorrentes (\emph{Recurrent Neural Networks})\\
+         TTS         & Texto para Fala (\emph{Text to Speech})\\
+         LSTM         & Memória de Longo-Curto Prazo (\emph{Long Short Term Memory})\\
+         GRU         & Unidade Recorrente Bloqueada  (\emph{Gated Recurrent Units})\\
+         STT         & Fala para Texto (\emph{Speech to Text})\\
+\end{tabular}
+
+% ---------------------------------------------------------------------------- %
+% \chapter{Lista de S�mbolos}
+% \begin{tabular}{ll}
+%         $\omega$    & Frequ�ncia angular\\
+%         $\psi$      & Fun��o de an�lise \emph{wavelet}\\
+%         $\Psi$      & Transformada de Fourier de $\psi$\\
+% \end{tabular}
+
+% ---------------------------------------------------------------------------- %
+% Listas de figuras e tabelas criadas automaticamente
+\listoffigures            
+\listoftables            
+
+% ---------------------------------------------------------------------------- %
+% Cap�tulos do trabalho
+\mainmatter
+
+% cabe�alho para as p�ginas de todos os cap�tulos
+\fancyhead[RE,LO]{\thesection}
+
+\singlespacing              % espa�amento simples
+%\onehalfspacing            % espa�amento um e meio
+
+\input 01-cap-introducao
+\input 02-cap-conceitos
+\input 03-cap-metodologia
+\input 04-cap-trabalhos-futuros
+
+% cabe�alho para os ap�ndices
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\appendixname\ \thechapter}} {\MakeUppercase{#1}} }
+\fancyhead[RE,LO]{}
+\appendix
+
+\include{05-ape-IPA}      % associado ao arquivo: 'ape-conjuntos.tex'
+
+% ---------------------------------------------------------------------------- %
+% Bibliografia
+\backmatter \singlespacing   % espa�amento simples
+\bibliographystyle{alpha-ime}% cita��o bibliogr�fica alpha
+\bibliography{bibliografia}  % associado ao arquivo:
+\nocite{*}
+
+% ---------------------------------------------------------------------------- %
+% �ndice remissivo
+\index{TBP|see{periodicidade região codificante}}
+\index{DSP|see{processamento digital de sinais}}
+\index{STFT|see{transformada de Fourier de tempo reduzido}}
+\index{DFT|see{transformada discreta de Fourier}}
+\index{Fourier!transformada|see{transformada de Fourier}}
+
+\printindex   % imprime o �ndice remissivo no documento 
+
+\end{document}
