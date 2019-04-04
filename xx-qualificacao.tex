@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \begin{document}
@@ -6,19 +7,21 @@
 
 Escolhemos para esse trabalho 3 conjuntos de dados sendo 2 prontamente acessíveis pelo grupo FalaBrasil e o outro extraído diretamente de vídeos do YouTube. Todos os arquivos tem 22.050Hz com 16 bits.
 
-\begin{table*}[h!]
-\hspace{-45pt}
-\begin{tabular}{p{1cm}p{2cm}p{5cm}p{6cm}}
-\hline
-Sigla & Nome              & Tópico                                                                                                                                                                                            & Descrição Técnica                                                                                                                                                                                                                                                                           \\ \hline
-CONST & Constituição      & Leitura da constituição nacional cujo texto e arquivos de áudio original foram processados pela equipe FalaBrasil de modo a adequar-se às necessidades do estudo de fala                          & Segmentados em aproximadamente 30 segundos, falante masculino, em ambiente de gravação de rádio. 9000 arquivos; aproximadamente 9h de gravações                                                                                                                      \\
-\hline
-LAPS  & LAPS BenchMark    & Corpus de voz utilizado para avaliação de desempenho de sistemas LVCSR.                                                                                                                           & 700 frases, o corpus possui 35 locutores com 20 frases cada, sendo 25 homens e 10 mulheres, o que corresponde a aproximadamente 54 minutos de áudio                                                                                                                                         \\ \hline
-YT    & Youtube (Cellbit) & Áudios extraídos de vídeos do YouTube de um \textit{youtuber} no estilo \textit{vlog}. Legendas manualmente inseridas nos vídeos pelo próprio autor dos vídeos. & 23 vídeos com legenda publicados entre 04/07/2017 e 27/03/2018 totalizando aproximadamente 23h de áudio. O locutor é um youtuber do sexo masculino com 21 anos. Os arquivos foram seccionados baseado nos tempos de cada linha inteira do arquivo de legenda. 4203 arquivos (2.9$\pm$4.2s). \\ \hline
-\end{tabular}
-\caption{Descrição dos Datasets}
-\label{tab:datasets}
-\end{table*}
+\begin{center}
+	\begin{table}[h!]
+		% \hspace{-45pt}
+		\begin{tabular}{p{1cm}p{2cm}p{5cm}p{6cm}}
+			\hline
+			Sigla & Nome              & Tópico                                                                                                                                                                                            & Descrição Técnica                                                                                                                                                                                                                                                                           \\ \hline
+			CONST & Constituição      & Leitura da constituição nacional cujo texto e arquivos de áudio original foram processados pela equipe FalaBrasil de modo a adequar-se às necessidades do estudo de fala                          & Segmentados em aproximadamente 30 segundos, falante masculino, em ambiente de gravação de rádio. 9000 arquivos; aproximadamente 9h de gravações                                                                                                                      \\
+			\hline
+			LAPS  & LAPS BenchMark    & Corpus de voz utilizado para avaliação de desempenho de sistemas LVCSR.                                                                                                                           & 700 frases, o corpus possui 35 locutores com 20 frases cada, sendo 25 homens e 10 mulheres, o que corresponde a aproximadamente 54 minutos de áudio                                                                                                                                         \\ \hline
+			YT    & Youtube (Cellbit) & Áudios extraídos de vídeos do YouTube de um \textit{youtuber} no estilo \textit{vlog}. Legendas manualmente inseridas nos vídeos pelo próprio autor dos vídeos. & 23 vídeos com legenda publicados entre 04/07/2017 e 27/03/2018 totalizando aproximadamente 23h de áudio. O locutor é um youtuber do sexo masculino com 21 anos. Os arquivos foram seccionados baseado nos tempos de cada linha inteira do arquivo de legenda. 4203 arquivos (2.9$\pm$4.2s). \\ \hline
+		\end{tabular}
+		\caption{Descrição dos Datasets}
+		\label{tab:datasets}
+	\end{table}
+\end{center}
 
 % \begin{itemize}
 %     \item Constituição - Os arquivos de áudio foram re-amostrados para 22.050 Hz com 16 bits. Em seguida, os arquivos foram segmentados em arquivos menores, com aproximadamente 30 segundos de duração cada, e por fim transcritos. Atualmente, o corpus é composto por um locutor do sexo masculino. Os arquivos totalizam aproximadamente 9 horas de áudio. O ambiente de gravação utilizado é bastante controlado.
@@ -64,11 +67,18 @@ Totalizando assim 12 sentenças a serem sintetizadas por 5 modelos, totalizando 
 Com o teste podemos afirmar então se as médias do MOS score de fato crescem e se crescem qual é esse nível de significância. A partir dessa informação também somos capazes de apontar os limites de variação mínimos do conjunto de dados para a evolução com significância da média perceptual dos ouvintes. Podemos por fim apontar também na dimensão do tempo o impacto do corte no conjunto de dados e seu respectivo impacto no resultado do MOS de naturalidade do modelo final.
 
 \subsection{Proposta de Sentenças 2}
-As referências originais se usam das frases de Harvard extraídas do apêndice do: IEEE Subcommittee on Subjective Measurements IEEE Recommended Practices for Speech Quality Measurements de 1969\footnote{http://www.cs.columbia.edu/~hgs/audio/harvard.html}. Entretanto essas sentenças foram pensadas de maneira anglocêntrica e podem não ser adequadas ao português. Seguindo a literatura de fonoaudiologia recomenda-se usar as frases do CAPE-V para detecção de problemas de fala \footnote{https://www.pucsp.br/laborvox/dicas\_pesquisa/downloads/CAPEV.pdf}  \footnote{https://www.asha.org/uploadedFiles/members/divs/D3CAPEVprocedures.pdf} \footnote{http://www.scielo.br/scielo.php?script=sci\_arttext\&pid=S2317-17822019000100303&lng=en&nrm=iso\&tlng=en} totalizando assim 6 frases. Podemos então avaliar a síntese através da análise AVQI 03.01 proposta na literatura de fonoaudiologia para detecção de desvios e vícios de fala\footnote{https://journals.sagepub.com/doi/abs/10.1177/0003489416636131?journalCode=aora}. Esse método se utiliza do Software Praat que é vastamente utilizado no campo de fala para detecção de parâmetros técnicos, como os necessários para equação conforme podemos ver abaixo
+As referências originais se usam das frases de Harvard extraídas do apêndice do: IEEE Subcommittee on Subjective Measurements IEEE Recommended Practices for Speech Quality Measurements de 1969\footnote{http://www.cs.columbia.edu/~hgs/audio/harvard.html}. Entretanto essas sentenças foram pensadas de maneira anglocêntrica e podem não ser adequadas ao português. Seguindo a literatura de fonoaudiologia recomenda-se usar as frases do CAPE-V para detecção de problemas de fala \footnote{https://www.pucsp.br/laborvox/dicas\_pesquisa/downloads/CAPEV.pdf}  \footnote{https://www.asha.org/uploadedFiles/members/divs/D3CAPEVprocedures.pdf} \footnote{http://www.scielo.br/scielo.php?script=sci\_arttext\&pid=S2317-17822019000100303\&lng=en\&nrm=iso\&tlng=en} totalizando assim 6 frases. Podemos então avaliar a síntese através da análise AVQI 03.01 proposta na literatura de fonoaudiologia para detecção de desvios e vícios de fala\footnote{https://journals.sagepub.com/doi/abs/10.1177/0003489416636131?journalCode=aora}. Esse método se utiliza do Software Praat que é vastamente utilizado no campo de fala para detecção de parâmetros técnicos, como os necessários para equação conforme podemos ver abaixo
 
-\begin{multline}
-    AVQI_{03.01}= (4.152 - 0.177*CPPs - (0.006*HNR) - (0.037*Shim)\\ + (0.941*ShdB) + 0.01*Slope + (0.093*Tilt))*2.8902
-\end{multline}
+\begin{equation}
+	\begin{split}
+    	AVQI_{03.01}& = (4.152 - 0.177*CPPs - (0.006*HNR) - (0.037*Shim)\\ 
+    	&+ (0.941*ShdB) + 0.01*Slope + (0.093*Tilt))*2.8902
+	\end{split}
+\end{equation}
 
 Para consolidar então os resultados obtidos do AVQI podemos executar uma pesquisa buscando obter o MOS dessas 30 sínteses (6 frases * 5 modelos). Com os resultados desse questionário podemos validar a correlação do MOS com o AVQI e correlacionar o volume de dados disponível a nota do AVQI e ao valor atribuído de média de MOS de Naturalidade com seus respectivos níveis de significância.
+
+
+  \bibliographystyle{alpha-ime}
+  \bibliography{bibliografia}
 \end{document}
