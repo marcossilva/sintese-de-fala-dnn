@@ -16,18 +16,39 @@ A síntese de fala já é um problema com vários produtos disponíveis para uso
 Entretanto esses modelos costumam permitir apenas síntese de falantes pré-determinados e frequentemente são modelos pagos e proprietários. 
 Recentemente diversas pesquisas demonstraram excelentes resultados na criação de modelos de voz a partir de gravações de um ou mais falantes na língua inglesa\cite{deepvoice3:DBLP:journals/corr/abs-1710-07654,baidu_voice_clonning:DBLP:journals/corr/abs-1802-06006,facebook:DBLP:journals/corr/TaigmanWPN17,speech_adaptation,wavenet,deepVoice,deepVoice2,deepvoice3:DBLP:journals/corr/abs-1710-07654}.
 
+\section{Questão de Pesquisa e Hipóteses}
 %Seção onde as questões são introduzidas
+
 Será que podemos obter a síntese de fala com esses modelos na língua portuguesa para um falante qualquer com resultados similares?
 Essa mesma síntese pode ser obtida com resultados satisfatórios com restrições de tempo e de dados em seu treinamento?
 Como podemos medir de maneira quantitativa os resultados de modelos de síntese de modo a facilitar a avaliação qualitativa?
 
-
-\section{Questões}
 %Seção onde destrinchamos as questões em hipóteses
+Para validar essas questões devemos responder várias hipóteses como:
 
-% Questões: a primeira questão parece insuficientemente especificada; qualquer pessoa com um celular ou GPS já ouviu síntese de voz em português, então a pergunta talvez exija outras condições, como o uso de redes neurais ou o fato do usuário não dispor da massa de dados de treino de uma Google por exemplo. Acrescentar na frase "para obter uma convergência mais rápida dos modelos +em português+ com naturalidade similar".
+\begin{enumerate}
+	\item \label{it:h1} Podemos treinar os mesmo modelos com dados em português?
+	\item \label{it:h2} Podemos medir esses modelos treinados de maneira similar a proposta nos trabalhos? (MOS Score)
+	\item \label{it:h3} Podemos aproveitar algum conhecimento aprendido de outro conjunto de dados no nosso treinamento? 
+	\item \label{it:h4} Podemos reduzir o conjunto de dados disponíveis e obter resultados comparavelmente bons?
+	\item \label{it:h5} Podemos restringir o tempo de treinamento do modelo e obter resultados comparavelmente bons?
+\end{enumerate}
 
-Queremos levantar como os atuais algoritmos de síntese neural se comportam perceptualmente na língua portuguesa com restrições de dados e de tempo na geração do modelo. Queremos levantar comparativamente se um modelo treinado com dados anteriores e que tenha apresentado bons resultados perceptuais pode ser benéfico para obter a síntese na língua portuguesa de maneira mais rápida, ou seja, com menor esforço computacional aproveitando o conhecimento já obtido do outro idioma.
+Queremos levantar comparativamente se um modelo pré-treinado em outra língua que já tenha apresentado bons resultados perceptuais pode ser benéfico para a síntese na língua portuguesa observando-se o tempo de treinamento, a convergência da função de erro do modelo e a avaliação perceptual de um grupo de ouvintes.
+Para responder essas questões estabelecemos uma sequência de decisões e experimentos destrinchados na próxima sessão.
+
+\section{Metodologia}
+
+Queremos levantar como os atuais algoritmos de síntese neural se comportam perceptualmente na língua portuguesa com restrições de dados e de tempo na geração do modelo. 
+A primeira decisão é a escolha do modelo neural a qual desejamos replicar. 
+Por uma questão de custo de implementação decidi abordar apenas um modelo, o Tacotron 2 \cite{tacotron2:DBLP:journals/corr/abs-1712-05884} desenvolvido pela Google cuja implementação encontra-se disponível em código aberto\footnote{https://github.com/carpedm20/multi-speaker-tacotron-tensorflow}.
+Tendo sido fixado o modelo a ser utilizado estabelecemos também conjuntos de dados a serem utilizados nessa atividade como pode ser visto na Tabela \ref{tab:datasets}.
+Esses dados possuem formato similar ao de treinamento empenhado no modelo implementado e com pequenos ajustes pode ser facilmente adaptado para adequar-se a necessidade \ref{it:h1}.
+Uma primeira métrica a ser avaliada para responder ao questionamento \ref{it:h2} é o MOS Score que consiste na média de opiniões coletadas de ouvintes que avaliaram a síntese do modelo perceptualmente.
+Essa métrica é utilizada no trabalho escolhido e facilitará a comparação de resultados.
+Para responder ao problema \ref{it:h3} podemos nos utilizar de \textit{transfer learning} com um modelo pré-treinado no inglês.
+O intuito de se aproveitar do \textit{transfer learning} é observar se as características aprendidas pelo modelo em uma língua podem ser aproveitadas em outra.
+
 
 
 
