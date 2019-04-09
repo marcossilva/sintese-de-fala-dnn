@@ -18,7 +18,6 @@ Recentemente diversas pesquisas demonstraram excelentes resultados na criação 
 
 \section{Questão de Pesquisa e Hipóteses}
 %Seção onde as questões são introduzidas
-
 Será que podemos obter a síntese de fala com esses modelos na língua portuguesa para um falante qualquer com resultados similares?
 Essa mesma síntese pode ser obtida com resultados satisfatórios com restrições de tempo e de dados em seu treinamento?
 Como podemos medir de maneira quantitativa os resultados de modelos de síntese de modo a facilitar a avaliação qualitativa?
@@ -56,10 +55,6 @@ Podemos nos utilizar de \textit{transfer learning} com um modelo pré-treinado n
 
 Conseguimos utilizar uma fração dos dados no treinamento com o modelo pré-treinado para obter um menor tempo de treinamento e uma síntese com naturalidade consistente com o mesmo modelo treinado com todos os dados em um período maior de tempo?
 
-\section{Datasets}
-
-Escolhemos para esse trabalho 3 conjuntos de dados sendo 2 prontamente acessíveis pelo grupo FalaBrasil e o outro extraído diretamente de vídeos do YouTube. Todos os arquivos tem 22.050Hz com 16 bits.
-
 \begin{center}
 	\begin{table}[h!]
 		% \hspace{-45pt}
@@ -81,7 +76,6 @@ Escolhemos para esse trabalho 3 conjuntos de dados sendo 2 prontamente acessíve
 %     \item LAPS BenchMark - Corpus de voz utilizado para avaliação de desempenho de sistemas LVCSR. Atualmente composto por 700 frases, o corpus possui 35 locutores com 20 frases cada, sendo 25 homens e 10 mulheres, o que corresponde a aproximadamente 54 minutos de áudio. Este corpus será expandido de forma a ter 50 locutores com a mesma distribuição, totalizando 1.000 frases. Todas as gravações foram realizadas em computadores utilizando microfones comuns. A taxa de amostragem utilizada foi de 22.050 Hz e cada amostra foi representada com 16 bits. O ambiente não foi controlado, existindo a presença de ruído nas gravações, com isso busca-se caracterizar ambientes onde softwares de reconhecimento de voz são utilizados.
 %     \item YouTube (Cellbit) - Os arquivos de áudio foram baixados diretamente do Youtube do canal Cellbit e corresponde a um total de 23 vídeos com legenda publicados entre 04/07/2017 e 27/03/2018 totalizando aproximadamente 23h de áudio. O locutor é um youtuber do sexo masculino com 21 anos. Os arquivos de áudio possuem taxa de amostragem de 22.050Hz com 16 bit e foram seccionados baseado nos tempos de cada linha inteira de frase do arquivo de legenda totalizando em 4203 arquivos de 2.9$\pm$4.2s.
 % \end{itemize}
-
 
 \section{Métodos}
 Para responder aos questionamentos acima propomos os seguintes passos:
