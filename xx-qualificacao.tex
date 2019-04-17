@@ -6,6 +6,8 @@
 \usepackage{hyperref}
 \begin{document}
 
+
+O texto apresentado nessa seção é um adendo ao texto principal com intuito de tratar objetivamente dos objetivos da pesquisa e da metodologia planejada. As seções aqui citadas farão referência ao texto principal visando facilitar a futura junção dos textos.
 \section{Contextualização}
 %Seção onde é feita a introdução da observação feita
 A fala é o meio mais comum de comunicação entre seres humanos\cite{flanang}. 
@@ -18,7 +20,6 @@ Recentemente diversas pesquisas demonstraram excelentes resultados na criação 
 
 \section{Questão de Pesquisa e Hipóteses}
 %Seção onde as questões são introduzidas
-
 Será que podemos obter a síntese de fala com esses modelos na língua portuguesa para um falante qualquer com resultados similares?
 Essa mesma síntese pode ser obtida com resultados satisfatórios com restrições de tempo e de dados em seu treinamento?
 Como podemos medir de maneira quantitativa os resultados de modelos de síntese de modo a facilitar a avaliação qualitativa?
@@ -44,10 +45,12 @@ A primeira decisão é a escolha do modelo neural a qual desejamos replicar.
 Por uma questão de custo de implementação decidi abordar apenas um modelo, o Tacotron 2 \cite{tacotron2:DBLP:journals/corr/abs-1712-05884} desenvolvido pela Google cuja implementação encontra-se disponível em código aberto\footnote{https://github.com/carpedm20/multi-speaker-tacotron-tensorflow}.
 Tendo sido fixado o modelo a ser utilizado estabelecemos também conjuntos de dados a serem utilizados nessa atividade como pode ser visto na Tabela \ref{tab:datasets}.
 Esses dados possuem formato similar ao de treinamento empenhado no modelo implementado e com pequenos ajustes pode ser facilmente adaptado para adequar-se a necessidade \ref{it:h1}.
+Para estabelecer-se uma linha de comparação treinaremos um modelo para cada conjunto de dados apresentado.
 Uma primeira métrica a ser avaliada para responder ao questionamento \ref{it:h2} é o MOS Score que consiste na média de opiniões coletadas de ouvintes que avaliaram a síntese do modelo perceptualmente.
 Essa métrica é utilizada no trabalho escolhido e facilitará a comparação de resultados.
 Para responder ao problema \ref{it:h3} podemos nos utilizar de \textit{transfer learning} com um modelo pré-treinado no inglês.
 O intuito de se aproveitar do \textit{transfer learning} é observar se as características aprendidas pelo modelo em uma língua podem ser aproveitadas em outra.
+Com o problema \ref{it:h4} propomos utilizar frações (5, 15, 33 e 50\%) dos dados apresentados para comparar seus resultados com
 
 
 
