@@ -7,8 +7,9 @@
 \begin{document}
 
 
+\section{Introdução}
 O texto apresentado nessa seção é um adendo ao texto principal com intuito de tratar objetivamente dos objetivos da pesquisa e da metodologia planejada. As seções aqui citadas farão referência ao texto principal visando facilitar a futura junção dos textos.
-\section{Contextualização}
+\subsection{Contextualização}
 %Seção onde é feita a introdução da observação feita
 A fala é o meio mais comum de comunicação entre seres humanos\cite{flanang}. 
 A expressão falada é um dos meios que trocamos cotidianamente ideias, emoções e refletimos nossas personalidades\cite{Tiwari2012}. 
@@ -18,7 +19,7 @@ A síntese de fala já é um problema com vários produtos disponíveis para uso
 Entretanto esses modelos costumam permitir apenas síntese de falantes pré-determinados e frequentemente são modelos pagos e proprietários. 
 Recentemente diversas pesquisas demonstraram excelentes resultados na criação de modelos de voz a partir de gravações de um ou mais falantes na língua inglesa\cite{deepvoice3:DBLP:journals/corr/abs-1710-07654,baidu_voice_clonning:DBLP:journals/corr/abs-1802-06006,facebook:DBLP:journals/corr/TaigmanWPN17,speech_adaptation,wavenet,deepVoice,deepVoice2,deepvoice3:DBLP:journals/corr/abs-1710-07654}.
 
-\section{Questão de Pesquisa e Hipóteses}
+\subsection{Questão de Pesquisa e Hipóteses}
 %Seção onde as questões são introduzidas
 Será que podemos obter a síntese de fala com esses modelos na língua portuguesa para um falante qualquer com resultados similares?
 Essa mesma síntese pode ser obtida com resultados satisfatórios com restrições de tempo e de dados em seu treinamento?
@@ -81,7 +82,7 @@ Conseguimos utilizar uma fração dos dados no treinamento com o modelo pré-tre
 %     \item YouTube (Cellbit) - Os arquivos de áudio foram baixados diretamente do Youtube do canal Cellbit e corresponde a um total de 23 vídeos com legenda publicados entre 04/07/2017 e 27/03/2018 totalizando aproximadamente 23h de áudio. O locutor é um youtuber do sexo masculino com 21 anos. Os arquivos de áudio possuem taxa de amostragem de 22.050Hz com 16 bit e foram seccionados baseado nos tempos de cada linha inteira de frase do arquivo de legenda totalizando em 4203 arquivos de 2.9$\pm$4.2s.
 % \end{itemize}
 
-\section{Métodos}
+\subsection{Métodos}
 Para responder aos questionamentos acima propomos os seguintes passos:
 
 Tomar a implementação\footnote{https://github.com/carpedm20/multi-speaker-tacotron-tensorflow} do modelo Tacotron \cite{tacotron2:DBLP:journals/corr/abs-1712-05884} reconhecido como estado da arte. O primeiro passo para estabelecer um paralelo comparativo treinando o modelo completamente a partir de dados em português usando os mesmos parâmetros que a publicação original (arquitetura de rede, otimizador, taxa de aprendizagem, entre outros) e encerrando o treino no mesmo número de épocas que o modelo pré-treinado.
