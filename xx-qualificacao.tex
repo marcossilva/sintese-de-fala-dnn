@@ -58,15 +58,6 @@ Por uma questão de custo de implementação decidi abordar apenas um modelo, o 
 O modelo também foi escolhido pois apresentar os melhores resultados de acordo com o comparativo levantado de modelos de síntese no inglês em Dezembro de 2017\footnote{\url{https://paperswithcode.com/sota/speech-synthesis-on-north-american-english}}.
 Tendo sido fixado o modelo a ser utilizado estabelecemos também conjuntos de dados a serem utilizados nessa atividade como pode ser visto na Tabela \ref{tab:datasets}.
 
-\begin{enumerate}
-	\item Esses dados possuem formato similar ao de treinamento empenhado no modelo implementado e com pequenos ajustes pode ser facilmente adaptado para adequar-se a necessidade \ref{it:h1}.
-	\item Para estabelecer-se uma linha de comparação treinaremos um modelo para cada conjunto de dados apresentado.
-	Uma primeira métrica a ser avaliada para responder ao questionamento \ref{it:h2} é o MOS Score que consiste na média de opiniões coletadas de ouvintes que avaliaram a síntese do modelo perceptualmente.
-	Essa métrica é utilizada no trabalho escolhido e facilitará a comparação de resultados.
-	\item Para responder ao problema \ref{it:h3} podemos nos utilizar de \textit{transfer learning} com um modelo pré-treinado no inglês.
-	O intuito de se aproveitar do \textit{transfer learning} é observar se as características aprendidas pelo modelo em uma língua podem ser aproveitadas em outra.
-	\item Com o problema \ref{it:h4} propomos utilizar frações (5, 15, 33 e 50\%) dos dados apresentados para comparar seus resultados com
-\end{enumerate}
 
 
 
@@ -98,13 +89,33 @@ Conseguimos utilizar uma fração dos dados no treinamento com o modelo pré-tre
 %     \item LAPS BenchMark - Corpus de voz utilizado para avaliação de desempenho de sistemas LVCSR. Atualmente composto por 700 frases, o corpus possui 35 locutores com 20 frases cada, sendo 25 homens e 10 mulheres, o que corresponde a aproximadamente 54 minutos de áudio. Este corpus será expandido de forma a ter 50 locutores com a mesma distribuição, totalizando 1.000 frases. Todas as gravações foram realizadas em computadores utilizando microfones comuns. A taxa de amostragem utilizada foi de 22.050 Hz e cada amostra foi representada com 16 bits. O ambiente não foi controlado, existindo a presença de ruído nas gravações, com isso busca-se caracterizar ambientes onde softwares de reconhecimento de voz são utilizados.
 %     \item YouTube (Cellbit) - Os arquivos de áudio foram baixados diretamente do Youtube do canal Cellbit e corresponde a um total de 23 vídeos com legenda publicados entre 04/07/2017 e 27/03/2018 totalizando aproximadamente 23h de áudio. O locutor é um youtuber do sexo masculino com 21 anos. Os arquivos de áudio possuem taxa de amostragem de 22.050Hz com 16 bit e foram seccionados baseado nos tempos de cada linha inteira de frase do arquivo de legenda totalizando em 4203 arquivos de 2.9$\pm$4.2s.
 % \end{itemize}
+\begin{enumerate}
+	\item Os dados apresentados possuem formato similar ao utilizado no modelo pré-treinado de referência. 
+	Sendo assim com pequenos ajustes pode ser facilmente adaptado para responder o questionamento \ref{it:h1}
+	\item Para estabelecer-se uma linha de comparação treinaremos um modelo para cada conjunto de dados apresentado com 100\% dos dados de cada.
+	Uma primeira métrica proposta a ser avaliada para responder ao questionamento \ref{it:h2} é o MOS Score que consiste na média de opiniões coletadas de ouvintes que avaliaram a síntese do modelo perceptualmente.
+	Essa métrica é utilizada no trabalho escolhido e facilitará a comparação de resultados
+	\item Para responder ao questionamento \ref{it:h3} podemos nos utilizar de \textit{transfer learning}\footnote{\url{https://machinelearningmastery.com/transfer-learning-for-deep-learning/}} com um modelo pré-treinado no inglês.
+	O intuito de se aproveitar do \textit{transfer learning} é observar se as características aprendidas pelo modelo em uma língua podem ser aproveitadas em outra
+	% pode haver correlação direta dada a natureza similar de sintaxe e semântica de ambas as línguas. Seja na ordem da construção das frases, nas raízes linguísticas  Auroux, Sylvain (2000). History of the Language Sciences. Berlin, New York: Walter de Gruyter. 1156 páginas. ISBN 3110167352
+	\item Para responder o questionamento \ref{it:h4} propomos utilizar frações (5, 15, 33 e 50\%) dos dados apresentados para comparar seus resultados com o modelo base treinado com 100\% dos dados
+	\item Para responder o questionamento \ref{it:h5} propomos treinar o modelo em uma quantidade fixa de épocas de 1k, 5k, 33k e 50k
+\end{enumerate}
+
+Como o intuito do problema \ref{it:h3} é utilizar do \textit{transfer learning} no auxílio do treino inicial do modelo não nos é interessante propor épocas muito maiores que nosso modelo de referência. 
+Como nosso modelo de referência é treinado em 100k épocas estabelecemos 50k como faixa de corte máxima. 
+Para as frações de dados propostas (1k, 5k, 33k e 50k) escolheremos aleatoriamente dentro da totalidade de cada conjunto selecionado.
+Para facilitar a reprodução a ordem dos arquivos usados e a semente aleatória usada na seleção aleatória serão disponibilizados.
+Tendo em vista esses parâmetros definidos queremos gerar um total de 25 modelos para cada conjunto de dados usando as retrições de tempo e .
+Com essas 25 hiperparametrizações fixadas para cada um dos 3 datasets descritos na Tabela \ref{tab:datasets} temos um total de 75 modelos. 
+
 
 \subsection{Métodos}
 Para responder aos questionamentos acima propomos os seguintes passos:
 
-Tomar a implementação\footnote{https://github.com/carpedm20/multi-speaker-tacotron-tensorflow} do modelo Tacotron \cite{tacotron2:DBLP:journals/corr/abs-1712-05884} reconhecido como estado da arte. O primeiro passo para estabelecer um paralelo comparativo treinando o modelo completamente a partir de dados em português usando os mesmos parâmetros que a publicação original (arquitetura de rede, otimizador, taxa de aprendizagem, entre outros) e encerrando o treino no mesmo número de épocas que o modelo pré-treinado.
+Tomar a implementação\footnote{https://github.com/carpedm20/multi-speaker-tacotron-tensorflow} do modelo Tacotron \cite{tacotron2} reconhecido como estado da arte. O primeiro passo para estabelecer um paralelo comparativo treinando o modelo completamente a partir de dados em português usando os mesmos parâmetros que a publicação original (arquitetura de rede, otimizador, taxa de aprendizagem, entre outros) e encerrando o treino no mesmo número de épocas que o modelo pré-treinado.
 
-Tendo esse modelo como comparativo podemos então treinaremos modelos com restrições de tempo e de dados. Para as restrições de tempo determinamos fixar uma quantidade de épocas de treino em 1k, 5k, 33k e 50k épocas. Como nosso intuito é comparar a performance do \textit{transfer learning} no auxílio do treino inicial do modelo não nos é interessante propor épocas muito maiores que nosso modelo de referência. como nosso modelo de referência é treinado em 100k épocas estabelecemos 50k como faixa de corte. Para os parâmetros de dimensão dos dados propomos dividir os dados de entrada em porcentagens de suas totalidades, mais especificamente 5, 15, 33 e 50\% dos dados, a serem escolhidos aleatoriamente dentro de cada conjunto de dados selecionado. Com esses parâmetro queremos gerar um total de 16 modelos para cada conjunto de dados. Com essas 16 hiperparametrizações fixadas para cada um dos 3 datasets descritos na Tabela \ref{tab:datasets} temos um total de 48 modelos. 
+
 
 Quantitativamente os modelos são analisados a partir da variação do valor do erro no tempo e o tempo proporcional para atingir aquela quantidade de épocas desejada. Qualitativamente desejamos estabelecer um teste com ouvintes humanos através de um teste de MOS (\textit{Median Opinion Score}) conforme a literatura. Como a quantidade de modelos a ser testada é grande utilizamos uma métrica proveniente da fonoaudiologia para filtrar os modelos mais naturais de modo a oferecer apenas os melhores modelos para os ouvintes finais. O intuito é estabelecer um teste que não cause exaustão ou desistência dos ouvintes de modo a obter resultados consistentes. Além disso podemos estabelecer um indicativo da utilização dessa métrica de naturalidade estabelecida pela fonoaudiologia como futuro parâmetro quantitativo para estudos similares.
 
@@ -136,7 +147,6 @@ As referências originais se usam das frases de Harvard extraídas do apêndice 
 \end{equation}
 
 Para consolidar então os resultados obtidos do AVQI podemos executar uma pesquisa buscando obter o MOS dessas 30 sínteses (6 frases * 5 modelos). Com os resultados desse questionário podemos validar a correlação do MOS com o AVQI e correlacionar o volume de dados disponível a nota do AVQI e ao valor atribuído de média de MOS de Naturalidade com seus respectivos níveis de significância.
-
 
   \bibliographystyle{alpha-ime}
   \bibliography{bibliografia}
