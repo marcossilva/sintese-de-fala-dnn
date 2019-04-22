@@ -100,18 +100,36 @@ Como o intuito do problema \ref{it:h3} é utilizar do \textit{transfer learning}
 Como nosso modelo de referência é treinado em 100k épocas estabelecemos 50k como faixa de corte máxima. 
 Para as frações de dados propostas (1k, 5k, 33k e 50k) escolheremos aleatoriamente dentro da totalidade de cada conjunto selecionado.
 Para facilitar a reprodução a ordem dos arquivos usados e a semente aleatória usada na seleção aleatória serão disponibilizados.
-Tendo em vista esses parâmetros definidos queremos gerar um total de 25 modelos para cada conjunto de dados usando as retrições de tempo e .
-Com essas 25 hiperparametrizações fixadas para cada um dos 3 datasets descritos na Tabela \ref{tab:datasets} temos um total de 75 modelos. 
+Tendo em vista esses parâmetros definidos queremos gerar um total de 21 modelos para cada conjunto de dados usando as retrições de tempo e .
+Com essas 21 hiperparametrizações fixadas para cada um dos 3 datasets descritos na Tabela \ref{tab:datasets} temos um total de 63 modelos. 
 
 
-\subsection{Métodos}
-Para responder aos questionamentos acima propomos os seguintes passos:
+Novamente para cada solução proposta na última lista enumerada fazemos abaixo um mapeamento das atividades respectivas.
 
-Tomar a implementação\footnote{https://github.com/carpedm20/multi-speaker-tacotron-tensorflow} do modelo Tacotron \cite{tacotron2} reconhecido como estado da arte. O primeiro passo para estabelecer um paralelo comparativo treinando o modelo completamente a partir de dados em português usando os mesmos parâmetros que a publicação original (arquitetura de rede, otimizador, taxa de aprendizagem, entre outros) e encerrando o treino no mesmo número de épocas que o modelo pré-treinado.
+\begin{enumerate}
+	\item Conforme mencionado são necessários alguns pequenos ajustes nos dados para estarem conforme o modelo espera.
+	Nessa atividade implementamos o código necessário para utilizar os dados levantados como entrada do modelo escolhido.
+	\item Estando os dados alinhados com o que o modelo espera podemos treinar a versão base do modelo que recebe 100\% dos dados de cada um dos três conjuntos propostos.
+	Esse primeiro modelo é treinado até 100k épocas, sendo as frações de tempo intermediárias salvas nesse mesmo treino.
+	\item Para a comparação com o \textit{transfer learning} já temos um modelo disponível no mesmo repositório mencionado com um modelo pré-treinado no inglês com o dataset LJ Speech\footnote{\url{https://keithito.com/LJ-Speech-Dataset/}}.
+	Ese modelo foi treinado até 100k épocas, por isso esse mesmo valor foi escolhido no modelo anterior visando facilitar a comparação.
+	\item Com esse modelo selecionado temos de treinar os 16 modelos restantes, que correspondem as combinações das 4 frações de dados com os 4 valores fixados de épocas.
+	\item Tendo então os 63 modelos treinados propomos um filtro dos melhores modelos através de uma métrica objetiva que quantifique a qualidade da voz.
+	A literatura de fonoaudiologia disponibiliza diferentes versões da \textit{Acoustic Voice Quality Index}(AVQI) onde cada nova versão tenta refinar a atual equação.
+	Propomos usar essa métrica para filtrar apenas os melhores dos 63 modelos tanto para reduzir o número de modelos a serem ouvidos por falantes humanos. 
+	Buscamos também estabelecer um padrão comparativo com alguma referência da literatura para a escolha das frases já que não existe padrão apontado na síntese no português.
+	\item Por fim tendo filtrado apenas os melhores modelos desejamos utilizar o questionário com o mesmo padrão de questões dos trabalho relacionados (Disponível no Apêndice F em Jia et al.\cite{tacotronFamilyQuestionary}).
+	Para isso propomos duas atividades distintas de coletas de respostas.
+	A primeira imita os trabalhos relacionados através do uso da ferramenta Amazon Turk, uma plataforma onde voluntários recebem incentivo monetário para responder questionários.
+	Essa proposta é interessante por dois motivos: fomenta o questionamento da naturalidade da fala sendo ouvida por falantes de outras línguas e obtêm resultados mais rápidos devido ao incentivo monetário.
+	A segunda proposta consiste em replicar esse questionário em um formulário online (e.g. MonkeySurvey) e coletar resultados do meio acadêmico, amigos e participantes espontâneos da comunidade.
 
+\end{enumerate}
 
-
-Quantitativamente os modelos são analisados a partir da variação do valor do erro no tempo e o tempo proporcional para atingir aquela quantidade de épocas desejada. Qualitativamente desejamos estabelecer um teste com ouvintes humanos através de um teste de MOS (\textit{Median Opinion Score}) conforme a literatura. Como a quantidade de modelos a ser testada é grande utilizamos uma métrica proveniente da fonoaudiologia para filtrar os modelos mais naturais de modo a oferecer apenas os melhores modelos para os ouvintes finais. O intuito é estabelecer um teste que não cause exaustão ou desistência dos ouvintes de modo a obter resultados consistentes. Além disso podemos estabelecer um indicativo da utilização dessa métrica de naturalidade estabelecida pela fonoaudiologia como futuro parâmetro quantitativo para estudos similares.
+Quantitativamente os modelos são analisados a partir da variação do valor da função de erro no tempo e o tempo para cada quantidade de épocas estudada.
+Qualitativamente propomos um questionário com ouvintes humanos através do teste de MOS (\textit{Median Opinion Score}) conforme a literatura. 
+O intuito da filtragem dos modelos com o AVQI reduzir a exaustão ou desistência dos ouvintes para consistência dos resultados.
+Através do comparativo entre os modelos filtrados podemos também validar ambas amétricas como métrica de naturalidade.
 
 Na literatura de fonoaudiologia recomenda-se utilizar as frases estabelecidas no CAPE-V para avaliar a naturalidade da fala. O CAPE-V é composto de 6 frases a serem pronunciadas. Com essas frases e o auxílio do software Pratt é possível obter métricas quanto ao formato da onda, amplitude 
 
