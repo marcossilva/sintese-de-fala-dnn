@@ -130,35 +130,28 @@ Quantitativamente os modelos são analisados a partir da variação do valor da 
 Qualitativamente propomos um questionário com ouvintes humanos através do teste de MOS (\textit{Median Opinion Score}) conforme a literatura. 
 O intuito da filtragem dos modelos com o AVQI reduzir a exaustão ou desistência dos ouvintes para consistência dos resultados.
 Através do comparativo entre os modelos filtrados podemos também validar ambas amétricas como métrica de naturalidade.
+Na literatura de fonoaudiologia recomenda-se utilizar as frases estabelecidas no CAPE-V para avaliar a naturalidade da fala. 
+O CAPE-V é composto de 6 frases que com o auxílio do software Pratt é possível obter o AVQI da fala.
+Com essas 6 sentenças serão sintetizados 378 exemplos de fala para serem avaliados pelo primeiro filtro.
 
-Na literatura de fonoaudiologia recomenda-se utilizar as frases estabelecidas no CAPE-V para avaliar a naturalidade da fala. O CAPE-V é composto de 6 frases a serem pronunciadas. Com essas frases e o auxílio do software Pratt é possível obter métricas quanto ao formato da onda, amplitude 
+------------------------------
 
-Com essas proporções para os três conjuntos de dados listados pretendemos concluir  quanto a variabilidade mínima necessária de um mesmo falante e também como o comprimento do conjunto em média afeta a naturalidade final sintetizada.
+% 
 
-As métricas quantitativas do treino serão:
-\begin{itemize}
-    \item O tempo de treino de cada modelo sob as mesmas condições
-    \item O valor da função de perda na última iteração e no menor valor alcançado durante o treino avaliado simultaneamente no conjunto de treino no conjunto de validação
-\end{itemize}
+% Com essas proporções para os três conjuntos de dados listados pretendemos concluir  quanto a variabilidade mínima necessária de um mesmo falante e também como o comprimento do conjunto em média afeta a naturalidade final sintetizada.
 
-\subsection{Proposta de Sentenças 1}
-Finalizados os treinos dos modelos e podendo-se finalmente estabelecer a síntese selecionamos 3 sentenças completas de cada conjunto de dados presentes nos arquivos originais para permitir um conjunto de controle. Selecionamos ainda 3 trava línguas pela dificuldade usual que eles representariam para um falante humano e pela presença de termos inexistentes nos conjuntos de treino\footnote{http://www.fonoaudiologia.med.br/voz/7-teste-sua-diccao}. Conforme o teste nas publicações originais o ouvinte será orientado a ouvir o áudio pelo menos 2x antes de determinar em qual dos 5 níveis de naturalidade ele se encaixa.
 
-Totalizando assim 12 sentenças a serem sintetizadas por 5 modelos, totalizando 60 sentenças sintetizadas e 9 sentenças originais. A partir desses dados a proposta é estabelecer um comparativo da evolução do MOS médio à medida que adicionamos frações dos datasets originais. A partir de um teste de significância estatística desejo determinar o nível de significância com a qual pode-se afirmar que houve alguma melhoria nas médias entre os modelos.
+% \subsection{Proposta de Sentenças 2}
+% As referências originais se usam das frases de Harvard extraídas do apêndice do: IEEE Subcommittee on Subjective Measurements IEEE Recommended Practices for Speech Quality Measurements de 1969\footnote{http://www.cs.columbia.edu/~hgs/audio/harvard.html}. Entretanto essas sentenças foram pensadas de maneira anglocêntrica e podem não ser adequadas ao português. Seguindo a literatura de fonoaudiologia recomenda-se usar as frases do CAPE-V para detecção de problemas de fala \footnote{https://www.pucsp.br/laborvox/dicas\_pesquisa/downloads/CAPEV.pdf}  \footnote{https://www.asha.org/uploadedFiles/members/divs/D3CAPEVprocedures.pdf} \footnote{http://www.scielo.br/scielo.php?script=sci\_arttext\&pid=S2317-17822019000100303\&lng=en\&nrm=iso\&tlng=en} totalizando assim 6 frases. Podemos então avaliar a síntese através da análise AVQI 03.01 proposta na literatura de fonoaudiologia para detecção de desvios e vícios de fala\footnote{https://journals.sagepub.com/doi/abs/10.1177/0003489416636131?journalCode=aora}. Esse método se utiliza do Software Praat que é vastamente utilizado no campo de fala para detecção de parâmetros técnicos, como os necessários para equação conforme podemos ver abaixo
 
-Com o teste podemos afirmar então se as médias do MOS score de fato crescem e se crescem qual é esse nível de significância. A partir dessa informação também somos capazes de apontar os limites de variação mínimos do conjunto de dados para a evolução com significância da média perceptual dos ouvintes. Podemos por fim apontar também na dimensão do tempo o impacto do corte no conjunto de dados e seu respectivo impacto no resultado do MOS de naturalidade do modelo final.
+% \begin{equation}
+% 	\begin{split}
+%     	AVQI_{03.01}& = (4.152 - 0.177*CPPs - (0.006*HNR) - (0.037*Shim)\\ 
+%     	&+ (0.941*ShdB) + 0.01*Slope + (0.093*Tilt))*2.8902
+% 	\end{split}
+% \end{equation}
 
-\subsection{Proposta de Sentenças 2}
-As referências originais se usam das frases de Harvard extraídas do apêndice do: IEEE Subcommittee on Subjective Measurements IEEE Recommended Practices for Speech Quality Measurements de 1969\footnote{http://www.cs.columbia.edu/~hgs/audio/harvard.html}. Entretanto essas sentenças foram pensadas de maneira anglocêntrica e podem não ser adequadas ao português. Seguindo a literatura de fonoaudiologia recomenda-se usar as frases do CAPE-V para detecção de problemas de fala \footnote{https://www.pucsp.br/laborvox/dicas\_pesquisa/downloads/CAPEV.pdf}  \footnote{https://www.asha.org/uploadedFiles/members/divs/D3CAPEVprocedures.pdf} \footnote{http://www.scielo.br/scielo.php?script=sci\_arttext\&pid=S2317-17822019000100303\&lng=en\&nrm=iso\&tlng=en} totalizando assim 6 frases. Podemos então avaliar a síntese através da análise AVQI 03.01 proposta na literatura de fonoaudiologia para detecção de desvios e vícios de fala\footnote{https://journals.sagepub.com/doi/abs/10.1177/0003489416636131?journalCode=aora}. Esse método se utiliza do Software Praat que é vastamente utilizado no campo de fala para detecção de parâmetros técnicos, como os necessários para equação conforme podemos ver abaixo
-
-\begin{equation}
-	\begin{split}
-    	AVQI_{03.01}& = (4.152 - 0.177*CPPs - (0.006*HNR) - (0.037*Shim)\\ 
-    	&+ (0.941*ShdB) + 0.01*Slope + (0.093*Tilt))*2.8902
-	\end{split}
-\end{equation}
-
-Para consolidar então os resultados obtidos do AVQI podemos executar uma pesquisa buscando obter o MOS dessas 30 sínteses (6 frases * 5 modelos). Com os resultados desse questionário podemos validar a correlação do MOS com o AVQI e correlacionar o volume de dados disponível a nota do AVQI e ao valor atribuído de média de MOS de Naturalidade com seus respectivos níveis de significância.
+% Para consolidar então os resultados obtidos do AVQI podemos executar uma pesquisa buscando obter o MOS dessas 30 sínteses (6 frases * 5 modelos). Com os resultados desse questionário podemos validar a correlação do MOS com o AVQI e correlacionar o volume de dados disponível a nota do AVQI e ao valor atribuído de média de MOS de Naturalidade com seus respectivos níveis de significância.
 
   \bibliographystyle{alpha-ime}
   \bibliography{bibliografia}
