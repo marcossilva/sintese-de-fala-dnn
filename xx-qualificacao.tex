@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage[hyphens]{url}
 \usepackage{hyperref}
+\usepackage[pdftex]{graphicx}
 \usepackage[usenames,svgnames,dvipsnames]{xcolor}
 \hypersetup{
 	colorlinks=true,
@@ -128,30 +129,31 @@ Novamente para cada solução proposta na última lista enumerada fazemos abaixo
 
 Quantitativamente os modelos são analisados a partir da variação do valor da função de erro no tempo e o tempo para cada quantidade de épocas estudada.
 Qualitativamente propomos um questionário com ouvintes humanos através do teste de MOS (\textit{Median Opinion Score}) conforme a literatura. 
+As referências originais se usam das frases de Harvard extraídas do apêndice do: IEEE Subcommittee on Subjective Measurements IEEE Recommended Practices for Speech Quality Measurements de 1969\footnote{http://www.cs.columbia.edu/~hgs/audio/harvard.html}.
+Entretanto essas sentenças foram pensadas de maneira anglocêntrica e podem não ser adequadas ao português.
+Seguindo a literatura de fonoaudiologia recomenda-se usar as frases do CAPE-V para detecção de problemas de fala \footnote{https://www.pucsp.br/laborvox/dicas\_pesquisa/downloads/CAPEV.pdf}  \footnote{https://www.asha.org/uploadedFiles/members/divs/D3CAPEVprocedures.pdf} \footnote{http://www.scielo.br/scielo.php?script=sci\_arttext\&pid=S2317-17822019000100303\&lng=en\&nrm=iso\&tlng=en}\footnote{\url{http://www.scielo.br/pdf/codas/v31n1/2317-1782-codas-31-1-e20180082.pdf}} totalizando assim 6 frases.
 O intuito da filtragem dos modelos com o AVQI reduzir a exaustão ou desistência dos ouvintes para consistência dos resultados.
 Através do comparativo entre os modelos filtrados podemos também validar ambas amétricas como métrica de naturalidade.
-Na literatura de fonoaudiologia recomenda-se utilizar as frases estabelecidas no CAPE-V para avaliar a naturalidade da fala. 
-O CAPE-V é composto de 6 frases que com o auxílio do software Pratt é possível obter o AVQI da fala.
-Com essas 6 sentenças serão sintetizados 378 exemplos de fala para serem avaliados pelo primeiro filtro.
+O CAPE-V é composto de 6 frases que com o auxílio do software Praat\footnote{\url{https://github.com/praat/praat}} é possível obter o AVQI da fala, conforme podemos ver na Imagem \ref{fig:praat}.
+Com essas 6 sentenças serão sintetizados 378 exemplos de fala para serem avaliados pelo primeiro filtro, o AVQI.
+O AVQI gera um valor para cada uma das sentenças sintetizadas.
+Para determinar o AVQI de um certo modelo faremos uma análise estatística descritiva simples para determinar entre optar pela comparação das médias ou das medianas de AVQIs entre modelos.
 
-------------------------------
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{figuras/praat_output_sample.png}
+	\caption{Exemplo de saída do Praat com os gráficos intermediários e o AVQI Score calculado}
+	\label{fig:praat}
+\end{figure}
 
-% 
+Esse filtro permite reduzir o número de modelos a serem avaliados por ouvintes humanos.
+Fixando-se a fração de dados a ser estudada teremos 5 modelos e fixando-se o número de épocas teremos 4 modelos totalizando assim 9 modelos para cada conjunto de dados.
+Utilizando as mesmas frases sintetizadas no AVQI teremos um total de 54 sentenças para cada conjunto de dados ou 162 sentenças ao todo.
+O intuito de filtrar as senteças que serão avaliadas por ouvintes humanos é reduzir a fatiga e possíveis desistências do questionário devido a um tempo muito extenso para completá-lo.
 
-% Com essas proporções para os três conjuntos de dados listados pretendemos concluir  quanto a variabilidade mínima necessária de um mesmo falante e também como o comprimento do conjunto em média afeta a naturalidade final sintetizada.
+\section{Cronograma}
 
-
-% \subsection{Proposta de Sentenças 2}
-% As referências originais se usam das frases de Harvard extraídas do apêndice do: IEEE Subcommittee on Subjective Measurements IEEE Recommended Practices for Speech Quality Measurements de 1969\footnote{http://www.cs.columbia.edu/~hgs/audio/harvard.html}. Entretanto essas sentenças foram pensadas de maneira anglocêntrica e podem não ser adequadas ao português. Seguindo a literatura de fonoaudiologia recomenda-se usar as frases do CAPE-V para detecção de problemas de fala \footnote{https://www.pucsp.br/laborvox/dicas\_pesquisa/downloads/CAPEV.pdf}  \footnote{https://www.asha.org/uploadedFiles/members/divs/D3CAPEVprocedures.pdf} \footnote{http://www.scielo.br/scielo.php?script=sci\_arttext\&pid=S2317-17822019000100303\&lng=en\&nrm=iso\&tlng=en} totalizando assim 6 frases. Podemos então avaliar a síntese através da análise AVQI 03.01 proposta na literatura de fonoaudiologia para detecção de desvios e vícios de fala\footnote{https://journals.sagepub.com/doi/abs/10.1177/0003489416636131?journalCode=aora}. Esse método se utiliza do Software Praat que é vastamente utilizado no campo de fala para detecção de parâmetros técnicos, como os necessários para equação conforme podemos ver abaixo
-
-% \begin{equation}
-% 	\begin{split}
-%     	AVQI_{03.01}& = (4.152 - 0.177*CPPs - (0.006*HNR) - (0.037*Shim)\\ 
-%     	&+ (0.941*ShdB) + 0.01*Slope + (0.093*Tilt))*2.8902
-% 	\end{split}
-% \end{equation}
-
-% Para consolidar então os resultados obtidos do AVQI podemos executar uma pesquisa buscando obter o MOS dessas 30 sínteses (6 frases * 5 modelos). Com os resultados desse questionário podemos validar a correlação do MOS com o AVQI e correlacionar o volume de dados disponível a nota do AVQI e ao valor atribuído de média de MOS de Naturalidade com seus respectivos níveis de significância.
+Podemos estabelecer um cronograma bem definido para as atividades apontadas na última lista numerada.
 
   \bibliographystyle{alpha-ime}
   \bibliography{bibliografia}
