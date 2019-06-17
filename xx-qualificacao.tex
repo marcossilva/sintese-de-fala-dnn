@@ -107,7 +107,7 @@ Como o intuito do problema \ref{it:h3} é utilizar do \textit{transfer learning}
 Como nosso modelo de referência é treinado em 100k épocas estabelecemos 50k como faixa de corte máxima. 
 Para as frações de dados propostas (1k, 5k, 33k e 50k) escolheremos aleatoriamente dentro da totalidade de cada conjunto selecionado.
 Para facilitar a reprodução a ordem dos arquivos usados e a semente aleatória usada na seleção aleatória serão disponibilizados.
-Tendo em vista esses parâmetros definidos queremos gerar um total de 21 modelos para cada conjunto de dados usando as retrições de tempo e .
+Tendo em vista esses parâmetros definidos queremos gerar um total de 21 modelos para cada conjunto de dados usando as restrições de tempo e .
 Com essas 21 hiperparametrizações fixadas para cada um dos 3 datasets descritos na Tabela \ref{tab:datasets} temos um total de 63 modelos. 
 
 
@@ -135,8 +135,8 @@ Novamente para cada solução proposta na última lista enumerada fazemos abaixo
 
 Quantitativamente os modelos são analisados a partir da variação do valor da função de erro no tempo e o tempo para cada quantidade de épocas estudada.
 Qualitativamente propomos um questionário com ouvintes humanos através do teste de MOS (\textit{Median Opinion Score}) conforme a literatura. 
-O intuito da filtragem dos modelos com o AVQI reduzir a exaustão ou desistência dos ouvintes para consistência dos resultados.
-Através do comparativo entre os modelos filtrados podemos também validar ambas amétricas como métrica de naturalidade.
+O intuito da filtragem dos modelos com o AVQI é reduzir a exaustão ou desistência dos ouvintes para consistência dos resultados.
+Através do comparativo entre os modelos filtrados podemos também validar ambas métricas como métrica de naturalidade.
 Na literatura de fonoaudiologia recomenda-se utilizar as frases estabelecidas no CAPE-V para avaliar a naturalidade da fala. 
 O CAPE-V é composto de 6 frases que com o auxílio do software Pratt é possível obter o AVQI da fala.
 Com essas 6 sentenças serão sintetizados 378 exemplos de fala para serem avaliados pelo primeiro filtro.
