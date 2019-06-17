@@ -134,6 +134,15 @@ Novamente para cada solução proposta na última lista enumerada fazemos abaixo
 
 \end{enumerate}
 
+\begin{figure}[h!]
+	\centering
+	\vspace{-20pt}
+	\includegraphics[width=\textwidth]{figuras/praat_output_sample.png}
+	\vspace{-40pt}
+	\caption{Exemplo de saída do Praat com os gráficos intermediários e o AVQI Score calculado}
+	\label{fig:praat}
+\end{figure}
+
 Quantitativamente os modelos são analisados a partir da variação do valor da função de erro no tempo e o tempo para cada quantidade de épocas estudada.
 Qualitativamente propomos um questionário com ouvintes humanos através do teste de MOS (\textit{Median Opinion Score}) conforme a literatura. 
 As referências originais se usam das frases de Harvard extraídas do apêndice do: IEEE Subcommittee on Subjective Measurements IEEE Recommended Practices for Speech Quality Measurements de 1969\footnote{http://www.cs.columbia.edu/~hgs/audio/harvard.html}.
@@ -145,13 +154,6 @@ O CAPE-V é composto de 6 frases que com o auxílio do software Praat\footnote{\
 Com essas 6 sentenças serão sintetizados 378 exemplos de fala para serem avaliados pelo primeiro filtro, o AVQI.
 O AVQI gera um valor para cada uma das sentenças sintetizadas.
 Para determinar o AVQI de um certo modelo faremos uma análise estatística descritiva simples para determinar entre optar pela comparação das médias ou das medianas de AVQIs entre modelos.
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{figuras/praat_output_sample.png}
-	\caption{Exemplo de saída do Praat com os gráficos intermediários e o AVQI Score calculado}
-	\label{fig:praat}
-\end{figure}
 
 Esse filtro permite reduzir o número de modelos a serem avaliados por ouvintes humanos.
 Fixando-se a fração de dados a ser estudada teremos 5 modelos e fixando-se o número de épocas teremos 4 modelos totalizando assim 9 modelos para cada conjunto de dados.
